@@ -11,12 +11,11 @@ backend_packages = [
 marker_filenames = ["BUILD"]
 
 [python]
-interpreter_constraints = [">=3.8"]
+interpreter_constraints = [">=3.9"]
 
 [pyoxidizer]
-interpreter_constraints = [">=3.8"]
-args = ["--release", "--target-triple x86_64-pc-windows-msvc"]
-#args = ["--release"]
+interpreter_constraints = [">=3.9"]
+args = ["--release"]
 
 [anonymous-telemetry]
 enabled = false

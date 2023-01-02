@@ -7,8 +7,8 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: ["3.9"]
-        os: ["ubuntu-latest", "windows-latest"]
+        python-version: ["3.8"]
+        os: ["windows-latest"]
 
     runs-on: ${{ matrix.os }}
 

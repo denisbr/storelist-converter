@@ -38,6 +38,13 @@ jobs:
       - name: Build pyoxidizer package
         run: |
           ./pants package ::
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-without-wheel
+          path: |
+            dist
+            !dist/*.whl
           #      - name: Test with pytest
           #        working-directory: storelistconv
           #        run: |

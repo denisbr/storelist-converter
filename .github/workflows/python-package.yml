@@ -1,0 +1,41 @@
+---
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Initialize Pants
+        uses: pantsbuild/actions/init-pants@main
+        with:
+          # cache0 makes it easy to bust the cache if needed
+          gha-cache-key: cache0-py${{ matrix.python-version }}
+          named-caches-hash: ${{ hashFiles('lockfiles/*.json', '**/something-else.lock') }}
+      - name: Install dependencies
+        working-directory: storelistconv
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        working-directory: storelistconv
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Test with pytest
+        working-directory: storelistconv
+        run: |
+          pytest

@@ -37,7 +37,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Build pyoxidizer package
         run: |
-          pants package ::
+          ./pants package ::
           #      - name: Test with pytest
           #        working-directory: storelistconv
           #        run: |

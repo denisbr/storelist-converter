@@ -1,7 +1,8 @@
 # Storelist converter
 
-PoC python cli tool to convert one storelist format into a schema useable by droppoint vendor.
+PoC python cli tool to convert one storelist format into a schema useable by
+droppoint vendor.
 
-## Pants / PyOxidizer
+## Pants / scie-jump
 
-Attempt at using Pants + PyOxidizer to create self-contained binaries.
+Attempt at using Pants + scie-jump to create self-contained binaries.

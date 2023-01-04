@@ -45,7 +45,7 @@ jobs:
         with:
           name: dist-without-wheel
           path: |
-            storelistconverter
+            dist/**/storelistconverter
             !dist/*.whl
           #      - name: Test with pytest
           #        working-directory: storelistconv

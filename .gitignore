@@ -1,4 +1,10 @@
 .pants.d/
 .pids/
+macos-*/scie-jump*
+macos-*/cpython*
+linux-*/scie-jump*
+linux-*/cpython*
+windows-*/scie-jump*
+windows-*/cpython*
 dist/
 *.xml

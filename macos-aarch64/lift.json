@@ -1,0 +1,30 @@
+{
+  "scie": {
+    "lift": {
+      "name": "dist/macos-aarch64/storelistconverter",
+      "boot": {
+        "commands": {
+          "": {
+            "env": {
+              "=PATH": "{cpython}/python/bin:{scie.env.PATH}"
+            },
+            "exe": "{cpython}/python/bin/python3.9",
+            "args": [
+              "{pex}"
+            ]
+          }
+        }
+      },
+      "files": [
+        {
+          "name": "cpython-3.9.14+20221002-aarch64-apple-darwin-install_only.tar.gz",
+          "key": "cpython"
+        },
+        {
+          "name": "../dist/storelistconv/storelistconverter.pex",
+          "key": "pex"
+        }
+      ]
+    }
+  }
+}

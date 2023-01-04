@@ -14,8 +14,7 @@ python_distribution(
     ),
 )
 
-pyoxidizer_binary(
-    name="storelistconv-bin",
-    entry_point="storelistconv.main",
-    dependencies=[":storelistconv-dist"],
+pex_binary(
+  name="storelistconverter",
+  entry_point="storelistconv/main.py",
 )

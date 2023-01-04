@@ -3,15 +3,15 @@
 set -euo pipefail
 
 ARCH=$(arch)
-echo "Found: CPU Architecture ${ARCH}."
+echo "Found CPU Architecture: ${ARCH}."
 
 case $(arch) in
     arm64)
         ARCH=aarch64;;
-    x86_64)
+    x86_64 | i386)
         ARCH=x86_64;;
     *)
-        echo "${ARCH} is not a valid arch, exiting."
+        echo "Unsupported architecture: ${ARCH}, exiting."
         exit 1;;
 esac
 
@@ -25,9 +25,11 @@ case ${1-default} in
         DIST=unknown-linux-gnu
         EXE="";;
     default | *)
-        echo "No valid os specified, exiting."
+        echo "Unsupported OS: ${1-default}, exiting."
         exit 1;;
 esac
+
+echo "Building for OS: ${OS}."
 
 # TODO: implement working windows building
 #elif [ "$1" == "windows-latest" ] ; then

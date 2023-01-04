@@ -3,6 +3,7 @@
 set -euo pipefail
 
 ARCH=$(arch)
+echo "Found: CPU Architecture ${ARCH}."
 
 case $(arch) in
     arm64)
@@ -10,10 +11,9 @@ case $(arch) in
     x86_64)
         ARCH=x86_64;;
     *)
-        echo "No known arch found, exiting."
+        echo "${ARCH} is not a valid arch, exiting."
         exit 1;;
 esac
-echo "Found: CPU Architecture ${ARCH}."
 
 case ${1-default} in
     macos-12)

@@ -2,22 +2,38 @@
 
 set -euo pipefail
 
-if [ "$1" == "macos-12" ] ; then
-    ARCH=aarch64
-    OS=macos
-    DIST=apple-darwin
-    EXE=""
-elif [ "$1" == "ubuntu-latest" ] ; then
-    ARCH=x86_64
-    OS=linux
-    DIST=unknown-linux-gnu
-    EXE=""
-elif [ "$1" == "windows-latest" ] ; then
-    ARCH=x86_64
-    OS=windows
-    DIST=pc-windows-msvc-static
-    EXE=.exe
-fi
+ARCH=$(arch)
+
+case $(arch) in
+    arm64)
+        ARCH=aarch64;;
+    x86_64)
+        ARCH=x86_64;;
+    *)
+        echo "No known arch found, exiting."
+        exit 1;;
+esac
+echo "Found: CPU Architecture ${ARCH}."
+
+case ${1-default} in
+    macos-12)
+        OS=macos
+        DIST=apple-darwin
+        EXE="";;
+    ubuntu-latest)
+        OS=linux
+        DIST=unknown-linux-gnu
+        EXE="";;
+    default | *)
+        echo "No valid os specified, exiting."
+        exit 1;;
+esac
+
+# TODO: implement working windows building
+#elif [ "$1" == "windows-latest" ] ; then
+#    OS=windows
+#    DIST=pc-windows-msvc-static
+#    EXE=.exe
 
 mkdir -p dist/${OS}-${ARCH}
 

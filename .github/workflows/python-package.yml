@@ -43,7 +43,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist-without-wheel
+          name: storelistconverter-${{ matrix.os }}
           path: |
             dist/**/storelistconverter
             !dist/*.whl

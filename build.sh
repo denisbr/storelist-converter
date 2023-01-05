@@ -24,18 +24,16 @@ case ${1-default} in
         OS=linux
         DIST=unknown-linux-gnu
         EXE="";;
+    windows-latest)
+        OS=windows
+        DIST=pc-windows-msvc-static
+        EXE=".exe";;
     default | *)
         echo "Unsupported OS: ${1-default}, exiting."
         exit 1;;
 esac
 
 echo "Building for OS: ${OS}."
-
-# TODO: implement working windows building
-#elif [ "$1" == "windows-latest" ] ; then
-#    OS=windows
-#    DIST=pc-windows-msvc-static
-#    EXE=.exe
 
 mkdir -p dist/${OS}-${ARCH}
 
